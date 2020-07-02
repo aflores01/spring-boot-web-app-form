@@ -18,6 +18,8 @@
 		<li th:text="${usuario.pais.id}"></li>
 		<li th:text="${usuario.pais.nombre}"></li>
 		<li th:text="${#dates.format(usuario.fechaNacimiento,'yyyy/MM/dd')}"></li>
+		<li th:text="'Habilitado: '+${usuario.habilitar}"></li>
+		<li th:text="'Genero: '+${usuario.genero}"></li>
 	</ul>
 	<div>Roles</div>
 	<ul>

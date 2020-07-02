@@ -54,6 +54,27 @@ public class Usuario {
 	@NotEmpty
 	private List<Role> roles;
 	
+	private Boolean habilitar;
+	
+	@NotEmpty
+	private String genero;
+	
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public Boolean getHabilitar() {
+		return habilitar;
+	}
+
+	public void setHabilitar(Boolean habilitar) {
+		this.habilitar = habilitar;
+	}
 
 	public List<Role> getRoles() {
 		return roles;

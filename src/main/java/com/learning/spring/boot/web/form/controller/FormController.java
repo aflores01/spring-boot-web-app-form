@@ -70,6 +70,11 @@ public class FormController {
 		binder.registerCustomEditor(Role.class, "roles", rolesEditor);
 	}
 	
+	@ModelAttribute("genero")
+	public List<String> genero(){
+		return Arrays.asList("Hombre","Mujer");
+	}
+	
 	@ModelAttribute("listaRoles")
 	public List<Role> listaRoles(){
 		return this.roleService.listar();
@@ -124,8 +129,10 @@ public class FormController {
 		usuario.setNombre("John");
 		usuario.setApellido("Doe");
 		usuario.setId("00.000.000-K");
+		usuario.setHabilitar(true);
 		model.addAttribute("titulo", "Crear Usuario");
 		model.addAttribute("usuario", usuario);
+		
 		return ("form");
 	}
 
