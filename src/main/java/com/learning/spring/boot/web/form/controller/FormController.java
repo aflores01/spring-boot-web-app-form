@@ -74,6 +74,15 @@ public class FormController {
 		paises.put("VE", "Venezuela");
 		return paises;
 	}
+	
+	@ModelAttribute("rolesMap")
+	public Map<String, String> rolesMap() {
+		Map<String, String> role = new HashMap<String, String>();
+		role.put("ROLE_ADMIN", "Administrador");
+		role.put("ROLE_USER", "Usuario");
+		role.put("ROLE_MODERATOR", "Moderador");
+		return role;
+	}
 
 	// Se poblan los datos y se validan desde el inicio
 	// Evento de ciclo de vida del controlador
