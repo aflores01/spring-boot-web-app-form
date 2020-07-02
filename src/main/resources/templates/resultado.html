@@ -19,5 +19,9 @@
 		<li th:text="${usuario.pais.nombre}"></li>
 		<li th:text="${#dates.format(usuario.fechaNacimiento,'yyyy/MM/dd')}"></li>
 	</ul>
+	<div>Roles</div>
+	<ul>
+		<li th:each="role: ${usuario.roles}" th:text="${role}"></li>
+	</ul>
 </body>
 </html>

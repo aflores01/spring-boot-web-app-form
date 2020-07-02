@@ -1,12 +1,14 @@
 package com.learning.spring.boot.web.form.domain;
 
 import java.util.Date;
+import java.util.List;
 
 //import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 //import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -48,6 +50,18 @@ public class Usuario {
 	
 	@NotNull
 	private Pais pais;
+	
+	@NotEmpty
+	private List<String> roles;
+	
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
 
 	public Pais getPais() {
 		return pais;

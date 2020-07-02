@@ -1,14 +1,13 @@
 package com.learning.spring.boot.web.form.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -35,16 +34,25 @@ public class FormController {
 
 	@Autowired
 	public UsuarioValidador validador;
-	
+
 	@Autowired
 	private PaisService paisService;
-	
+
 	@Autowired
 	private PaisPropertyEditors paisEditor;
 
 	@ModelAttribute("listaPaises")
 	public List<Pais> listaPaises() {
 		return paisService.listar();
+	}
+	
+	@ModelAttribute("listaRolesString")
+	public List<String> listaRolesString(){
+		List<String> roles = new ArrayList<>();
+		roles.add("ROLE_ADMIN");
+		roles.add("ROLE_USER");
+		roles.add("ROLE_MODERATOR");
+		return roles;
 	}
 
 	// Forma básica
@@ -82,9 +90,8 @@ public class FormController {
 		// campos.
 		binder.registerCustomEditor(String.class, "nombre", new NombreMayusculaEditor());
 		binder.registerCustomEditor(String.class, "apellido", new NombreMayusculaEditor());
-		
-		binder.registerCustomEditor(Pais.class, "pais", paisEditor);
 
+		binder.registerCustomEditor(Pais.class, "pais", paisEditor);
 
 	}
 
