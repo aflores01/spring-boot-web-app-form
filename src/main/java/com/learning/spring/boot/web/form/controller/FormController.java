@@ -130,8 +130,11 @@ public class FormController {
 		usuario.setApellido("Doe");
 		usuario.setId("00.000.000-K");
 		usuario.setHabilitar(true);
+		usuario.setSecretVal("Secret Value");
+		
 		model.addAttribute("titulo", "Crear Usuario");
 		model.addAttribute("usuario", usuario);
+		
 		
 		return ("form");
 	}
