@@ -1,13 +1,13 @@
 package com.learning.spring.boot.web.form.domain;
 
-import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotBlank;
 //import javax.validation.constraints.NotNull;
 
 public class Pais {
 
 	//@NotNull
 	private Integer id;
-	@NotBlank
+	//@NotBlank
 	private String codigo;
 	private String nombre;
 

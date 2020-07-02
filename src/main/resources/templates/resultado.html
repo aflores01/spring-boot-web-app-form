@@ -15,6 +15,8 @@
 		<li th:text="${usuario.id}"></li>
 		<li th:text="${usuario.cuenta}"></li>
 		<li th:text="${usuario.pais.codigo}"></li>
+		<li th:text="${usuario.pais.id}"></li>
+		<li th:text="${usuario.pais.nombre}"></li>
 		<li th:text="${#dates.format(usuario.fechaNacimiento,'yyyy/MM/dd')}"></li>
 	</ul>
 </body>

@@ -46,6 +46,7 @@ public class Usuario {
 	// @DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaNacimiento;
 	
+	@NotNull
 	private Pais pais;
 
 	public Pais getPais() {

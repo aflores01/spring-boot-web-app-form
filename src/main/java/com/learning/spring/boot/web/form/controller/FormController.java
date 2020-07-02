@@ -25,6 +25,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.learning.spring.boot.web.form.domain.Pais;
 import com.learning.spring.boot.web.form.domain.Usuario;
 import com.learning.spring.boot.web.form.editors.NombreMayusculaEditor;
+import com.learning.spring.boot.web.form.editors.PaisPropertyEditors;
+import com.learning.spring.boot.web.form.services.PaisService;
 import com.learning.spring.boot.web.form.validation.UsuarioValidador;
 
 @Controller
@@ -33,12 +35,16 @@ public class FormController {
 
 	@Autowired
 	public UsuarioValidador validador;
+	
+	@Autowired
+	private PaisService paisService;
+	
+	@Autowired
+	private PaisPropertyEditors paisEditor;
 
 	@ModelAttribute("listaPaises")
 	public List<Pais> listaPaises() {
-		return Arrays.asList(new Pais(1, "ES", "España"), new Pais(2, "MX", "Mexico"), new Pais(3, "CL", "Chile"),
-				new Pais(4, "AR", "Aregntina"), new Pais(5, "PE", "Perú"), new Pais(6, "CO", "Colombia"),
-				new Pais(7, "VE", "Venezuela"));
+		return paisService.listar();
 	}
 
 	// Forma básica
@@ -63,6 +69,7 @@ public class FormController {
 
 	// Se poblan los datos y se validan desde el inicio
 	// Evento de ciclo de vida del controlador
+	// Se registran todos los PropertyEditor para inicializarlos
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.addValidators(validador);
@@ -75,6 +82,9 @@ public class FormController {
 		// campos.
 		binder.registerCustomEditor(String.class, "nombre", new NombreMayusculaEditor());
 		binder.registerCustomEditor(String.class, "apellido", new NombreMayusculaEditor());
+		
+		binder.registerCustomEditor(Pais.class, "pais", paisEditor);
+
 
 	}
 
