@@ -22,10 +22,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.learning.spring.boot.web.form.domain.Pais;
+import com.learning.spring.boot.web.form.domain.Role;
 import com.learning.spring.boot.web.form.domain.Usuario;
 import com.learning.spring.boot.web.form.editors.NombreMayusculaEditor;
 import com.learning.spring.boot.web.form.editors.PaisPropertyEditors;
+import com.learning.spring.boot.web.form.editors.RolesEditor;
 import com.learning.spring.boot.web.form.services.PaisService;
+import com.learning.spring.boot.web.form.services.RoleServiceImpl;
 import com.learning.spring.boot.web.form.validation.UsuarioValidador;
 
 @Controller
@@ -40,6 +43,37 @@ public class FormController {
 
 	@Autowired
 	private PaisPropertyEditors paisEditor;
+	
+	@Autowired
+	private RoleServiceImpl roleService;
+	
+	@Autowired
+	private RolesEditor rolesEditor;
+	
+	// Se poblan los datos y se validan desde el inicio
+	// Evento de ciclo de vida del controlador
+	// Se registran todos los PropertyEditor para inicializarlos
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.addValidators(validador);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		// Forzar el formato estricto de fecha
+		dateFormat.setLenient(false);
+		//
+		binder.registerCustomEditor(Date.class, "fechaNacimiento", new CustomDateEditor(dateFormat, false));
+		// Si no se asigna en el segundo parametro el atributo, se toman todos los
+		// campos.
+		binder.registerCustomEditor(String.class, "nombre", new NombreMayusculaEditor());
+		binder.registerCustomEditor(String.class, "apellido", new NombreMayusculaEditor());
+
+		binder.registerCustomEditor(Pais.class, "pais", paisEditor);
+		binder.registerCustomEditor(Role.class, "roles", rolesEditor);
+	}
+	
+	@ModelAttribute("listaRoles")
+	public List<Role> listaRoles(){
+		return this.roleService.listar();
+	}
 
 	@ModelAttribute("listaPaises")
 	public List<Pais> listaPaises() {
@@ -82,26 +116,6 @@ public class FormController {
 		role.put("ROLE_USER", "Usuario");
 		role.put("ROLE_MODERATOR", "Moderador");
 		return role;
-	}
-
-	// Se poblan los datos y se validan desde el inicio
-	// Evento de ciclo de vida del controlador
-	// Se registran todos los PropertyEditor para inicializarlos
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		binder.addValidators(validador);
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		// Forzar el formato estricto de fecha
-		dateFormat.setLenient(false);
-		//
-		binder.registerCustomEditor(Date.class, "fechaNacimiento", new CustomDateEditor(dateFormat, false));
-		// Si no se asigna en el segundo parametro el atributo, se toman todos los
-		// campos.
-		binder.registerCustomEditor(String.class, "nombre", new NombreMayusculaEditor());
-		binder.registerCustomEditor(String.class, "apellido", new NombreMayusculaEditor());
-
-		binder.registerCustomEditor(Pais.class, "pais", paisEditor);
-
 	}
 
 	@GetMapping("/form")
