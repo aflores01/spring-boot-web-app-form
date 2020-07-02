@@ -2,14 +2,17 @@ package com.learning.spring.boot.web.form.domain;
 
 import java.util.Date;
 
+//import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
-import org.springframework.format.annotation.DateTimeFormat;
+//import org.springframework.format.annotation.DateTimeFormat;
 
 import com.learning.spring.boot.web.form.validation.IdentificadorRegex;
 import com.learning.spring.boot.web.form.validation.Requerido;
@@ -29,18 +32,29 @@ public class Usuario {
 	private String email;
 	// @NotEmpty
 	private String nombre;
-	//@NotBlank
+	// @NotBlank
 	@Requerido
 	private String apellido;
-	
+
 	@NotNull
 	@Min(5)
 	@Max(5000)
 	private Integer cuenta;
-	
+
 	@NotNull
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Past
+	// @DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaNacimiento;
+	
+	private Pais pais;
+
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
 
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
