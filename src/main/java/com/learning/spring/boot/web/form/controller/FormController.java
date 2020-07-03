@@ -131,6 +131,8 @@ public class FormController {
 		usuario.setId("00.000.000-K");
 		usuario.setHabilitar(true);
 		usuario.setSecretVal("Secret Value");
+		usuario.setPais(new Pais(2, "MX", "Mexico"));
+		usuario.setRoles(Arrays.asList(new Role(2,"Moderador","ROLE_MODERATOR"),new Role(3,"Usuario","ROLE_USER")));
 		
 		model.addAttribute("titulo", "Crear Usuario");
 		model.addAttribute("usuario", usuario);
