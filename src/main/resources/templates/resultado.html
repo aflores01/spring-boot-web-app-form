@@ -9,9 +9,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<div class="alert-success">
-		<span th:text="'Tiempo transcurrido: ' + ${timeLapsed} + 'ms'"></span>
-	</div>
+	<section th:replace="components/components :: timeInterceptor"></section>
 	<div class="container">
 		<a th:href="@{/form}" class="btn btn-success btn-Lg my-3">Volver</a>
 		<ul class="list-group my-2">

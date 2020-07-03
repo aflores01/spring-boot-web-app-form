@@ -21,6 +21,10 @@ public class LoadingTimeInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
+		if(request.getMethod().equalsIgnoreCase("post")) {
+			return true;
+		}
+		
 		if(handler instanceof HandlerMethod) {
 			HandlerMethod metodo = (HandlerMethod) handler;
 			logger.info("Metodo del controlador: " + metodo.getMethod().getName());
@@ -31,7 +35,7 @@ public class LoadingTimeInterceptor implements HandlerInterceptor{
 		request.setAttribute("initTime", initTime);
 		
 		Random random = new Random();
-		Integer delay = random.nextInt(500);
+		Integer delay = random.nextInt(100);
 		Thread.sleep(delay);
 		
 		return true;
@@ -40,6 +44,11 @@ public class LoadingTimeInterceptor implements HandlerInterceptor{
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
+		
+		if(request.getMethod().equalsIgnoreCase("post")) {
+			return;
+		}
+
 		
 		long initTime = System.currentTimeMillis();
 		long finishTime = (Long) request.getAttribute("initTime");
