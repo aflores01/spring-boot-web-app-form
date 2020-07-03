@@ -35,7 +35,6 @@ public class Usuario {
 	// @NotEmpty
 	private String nombre;
 	// @NotBlank
-	@Requerido
 	private String apellido;
 
 	@NotNull
@@ -48,7 +47,7 @@ public class Usuario {
 	// @DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaNacimiento;
 	
-	@NotNull
+	//@NotNull
 	private Pais pais;
 	
 	@NotEmpty
@@ -56,7 +55,7 @@ public class Usuario {
 	
 	private Boolean habilitar;
 	
-	@NotEmpty
+	//@NotEmpty
 	private String genero;
 	
 	
