@@ -3,29 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <title th:text="${titulo}"></title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
 </head>
 <body>
-	<h3 th:text="${titulo}"></h3>
-	<ul>
-		<li th:text="${usuario.nombre}"></li>
-		<li th:text="${usuario.apellido}"></li>
-		<li th:text="${usuario.username}"></li>
-		<li th:text="${usuario.password}"></li>
-		<li th:text="${usuario.email}"></li>
-		<li th:text="${usuario.id}"></li>
-		<li th:text="${usuario.cuenta}"></li>
-		<li th:text="${usuario.pais.codigo}"></li>
-		<li th:text="${usuario.pais.id}"></li>
-		<li th:text="${usuario.pais.nombre}"></li>
-		<li th:text="${#dates.format(usuario.fechaNacimiento,'yyyy/MM/dd')}"></li>
-		<li th:text="'Habilitado: '+${usuario.habilitar}"></li>
-		<li th:text="'Genero: '+${usuario.genero}"></li>
-		<li th:text="'Valor Oculto: '+${usuario.secretVal}"></li>
-	</ul>
-	<div>Roles</div>
-	<ul>
-		<li th:each="role: ${usuario.roles}" th:text="${role.id}+' '+${role.nombre}+' '+${role.role}"></li>
-	</ul>
+	<div class="container">
+	<a th:href="@{/form}" class="btn btn-success btn-Lg my-3">Volver</a>
+		<ul class="list-group my-2">
+			<li class="list-group-item active" th:text="${titulo}"></li>
+			<li class="list-group-item" th:text="${usuario.nombre}"></li>
+			<li class="list-group-item" th:text="${usuario.apellido}"></li>
+			<li class="list-group-item" th:text="${usuario.username}"></li>
+			<li class="list-group-item" th:text="${usuario.password}"></li>
+			<li class="list-group-item" th:text="${usuario.email}"></li>
+			<li class="list-group-item" th:text="${usuario.id}"></li>
+			<li class="list-group-item" th:text="${usuario.cuenta}"></li>
+			<li class="list-group-item" th:text="${usuario.pais.codigo}"></li>
+			<li class="list-group-item" th:text="${usuario.pais.id}"></li>
+			<li class="list-group-item" th:text="${usuario.pais.nombre}"></li>
+			<li class="list-group-item"
+				th:text="${#dates.format(usuario.fechaNacimiento,'yyyy/MM/dd')}"></li>
+			<li class="list-group-item"
+				th:text="'Habilitado: '+${usuario.habilitar}"></li>
+			<li class="list-group-item" th:text="'Genero: '+${usuario.genero}"></li>
+			<li class="list-group-item"
+				th:text="'Valor Oculto: '+${usuario.secretVal}"></li>
+		</ul>
+		<ul class="list-group my-3">
+			<li class="list-group-item active">Roles</li>
+			<li class="list-group-item" th:each="role: ${usuario.roles}"
+				th:text="${role.id}+' '+${role.nombre}+' '+${role.role}"></li>
+		</ul>
+	</div>
 </body>
 </html>
