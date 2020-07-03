@@ -9,8 +9,11 @@
 	crossorigin="anonymous">
 </head>
 <body>
+	<div class="alert-success">
+		<span th:text="'Tiempo transcurrido: ' + ${timeLapsed} + 'ms'"></span>
+	</div>
 	<div class="container">
-	<a th:href="@{/form}" class="btn btn-success btn-Lg my-3">Volver</a>
+		<a th:href="@{/form}" class="btn btn-success btn-Lg my-3">Volver</a>
 		<ul class="list-group my-2">
 			<li class="list-group-item active" th:text="${titulo}"></li>
 			<li class="list-group-item" th:text="${usuario.nombre}"></li>

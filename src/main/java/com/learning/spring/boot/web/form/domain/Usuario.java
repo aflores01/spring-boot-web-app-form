@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 //import org.springframework.format.annotation.DateTimeFormat;
 
 import com.learning.spring.boot.web.form.validation.IdentificadorRegex;
-import com.learning.spring.boot.web.form.validation.Requerido;
+//import com.learning.spring.boot.web.form.validation.Requerido;
 
 public class Usuario {
 
