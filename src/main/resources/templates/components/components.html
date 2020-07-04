@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<section th:fragment="timeInterceptor">
+		<div class="alert-success" th:if="${timeLapsed != null}">
+			<span th:text="'Tiempo transcurrido: ' + ${timeLapsed} + 'ms'"></span>
+		</div>
+	</section>
+</body>
+</html>
